@@ -11,6 +11,20 @@ class Product {
  + setPrice(price : double) : void
 }
 
+class DigitalProduct {
+ - downloadUrl : String
+ - fileSizeMB : double
+ + getDownloadUrl() : String
+ + getFileSizeMB() : double
+}
+
+class PhysicalProduct {
+ - weightKg : double
+ - dimensions : String
+ + getWeightKg() : double
+ + getDimensions() : String
+}
+
 class ProductService {
  - products : List<Product>
  - nextId : Long
@@ -29,8 +43,13 @@ class ProductController {
  + deleteProduct(id : Long) : void
 }
 
+' <|-- is the inheritance arrow. The hollow triangle sits at the PARENT (Product).
+Product <|-- DigitalProduct
+Product <|-- PhysicalProduct
+
 ' ..> is a dependency: DASHED line, open arrow
 ProductController ..> ProductService
+
 ' --> is an association: SOLID line
 ProductService --> Product
 @enduml
