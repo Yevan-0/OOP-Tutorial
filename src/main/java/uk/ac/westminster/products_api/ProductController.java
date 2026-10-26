@@ -22,7 +22,8 @@ public class ProductController {
   }
 
   @PostMapping("/products")
-  public Product addProductById(@RequestBody Product product) {
+  public Product addProductById(@RequestBody DigitalProduct product) {
+    //temporary fix: Changed from Product to DigitalProduct, beacuse Jackson cannot instantiate an abstract class from JSON
     return productService.addProduct(product);
   }
 
@@ -39,5 +40,10 @@ public class ProductController {
   @PostMapping
   public Product addProduct(@RequestBody DigitalProduct product) {
     return productService.addProduct(product);
+  }
+
+  @GetMapping("/products/summaries")
+  public List<String> getAllSummaries() {
+    return productService.getAllSummaries();
   }
 }

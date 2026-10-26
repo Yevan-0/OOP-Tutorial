@@ -12,7 +12,7 @@ public class ProductService {
   private Long nextId = 1L;
 
   public ProductService() {
-    products.add(new DigitalProduct(1L, "Java E-Book", 9.99, "https://example.com/java-ebook.pdf"));
+    products.add(new DigitalProduct(1L, "Java E-Book", 9.99, "https://example.com/java-ebook.pdf", 35.00));
     products.add(new PhysicalProduct(2L, "Desk Lamp", 24.50, 1.2, "30x15x15 cm"));
     nextId = 3L; // so the next POST doesn't reuse id 1 or 2
   }
@@ -37,5 +37,13 @@ public class ProductService {
 
   public List<Product> findByName(String name) {
     return products.stream().filter(p -> p.getName().contains(name)).toList();
+  }
+
+  public List<String> getAllSummaries() {
+    List<String> summaries = new ArrayList<>();
+    for (Product p : products) {
+      summaries.add(p.getSummary());
+    }
+    return summaries;
   }
 }
